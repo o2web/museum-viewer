@@ -1,0 +1,67 @@
+// STRIP UNITS
+@function strip-unit($value){
+  @return $value / ($value * 0 + 1);
+}
+
+// PX to EM (kind of)
+// divide by 16
+@function em($px){
+  @return #{strip-unit($px/16)}em;
+}
+
+// EM to PX (kind of)
+// multiply by 16
+@function px($em){
+  @return #{strip-unit($em*16)}px;
+}
+
+
+// PX to REM
+// divide by 16
+@function rem($px){
+  @return #{strip-unit($px/16)}rem;
+}
+
+// MAX-WIDTH MIXIN
+@mixin max-width($width){
+  @media only screen and (max-width: $width){
+    @content;
+  }
+}
+
+@mixin max-height($height){
+  @media only screen and (max-height: $height){
+    @content;
+  }
+}
+
+@mixin min-width($width){
+  @media only screen and (min-width: $width){
+    @content;
+  }
+}
+
+@mixin mobile-only(){
+  @media only screen and (max-width: $tablet-portrait){
+    @content;
+  }
+}
+
+
+
+// PADDING
+@mixin page-padding($size: false) {
+  padding: if($size, unquote(str-replace($size, '$', $desktop-page-padding)), $desktop-page-padding);
+
+  @include max-width($tablet-landscape){
+    padding: if($size, unquote(str-replace($size, '$', $tablet-page-padding)), $tablet-page-padding);
+  }
+
+  @include max-width($tablet-portrait){
+    padding: if($size, unquote(str-replace($size, '$', $large-mobile-page-padding)), $large-mobile-page-padding);
+  }
+
+  @include max-width($mobile-small){
+    padding: if($size, unquote(str-replace($size, '$', $small-mobile-page-padding)), $small-mobile-page-padding);
+  }
+}

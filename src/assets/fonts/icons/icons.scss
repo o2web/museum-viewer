@@ -1,0 +1,114 @@
+$__iconfont__data: map-merge(if(global_variable_exists('__iconfont__data'), $__iconfont__data, ()), (
+	"iconfont": (
+		"account": "\ea01",
+		"albums": "\ea02",
+		"arrow-right": "\ea03",
+		"check": "\ea04",
+		"chevron-left-light": "\ea05",
+		"chevron-right-light": "\ea06",
+		"close-light": "\ea07",
+		"close": "\ea08",
+		"compass": "\ea09",
+		"facebook": "\ea0a",
+		"git": "\ea0b",
+		"github": "\ea0c",
+		"heart-full": "\ea0d",
+		"heart": "\ea0e",
+		"home": "\ea0f",
+		"info": "\ea10",
+		"instagram": "\ea11",
+		"link": "\ea12",
+		"linkedin": "\ea13",
+		"menu": "\ea14",
+		"minus-light": "\ea15",
+		"minus": "\ea16",
+		"next": "\ea17",
+		"no": "\ea18",
+		"pinterest": "\ea19",
+		"plus-light": "\ea1a",
+		"plus": "\ea1b",
+		"reset-light": "\ea1c",
+		"search": "\ea1d",
+		"select": "\ea1e",
+		"share": "\ea1f",
+		"sound": "\ea20",
+		"tag": "\ea21",
+		"twitter": "\ea22",
+		"vimeo": "\ea23",
+		"yes": "\ea24",
+		"youtube": "\ea25",
+		"zoom": "\ea26"
+	)
+));
+
+
+$create-font-face: true !default; // should the @font-face tag get created?
+
+// should there be a custom class for each icon? will be .filename
+$create-icon-classes: true !default; 
+
+// what is the common class name that icons share? in this case icons need to have .icon.filename in their classes
+// this requires you to have 2 classes on each icon html element, but reduced redeclaration of the font family
+// for each icon
+$icon-common-class: 'icon' !default;
+
+// if you whish to prefix your filenames, here you can do so.
+// if this string stays empty, your classes will use the filename, for example
+// an icon called star.svg will result in a class called .star
+// if you use the prefix to be 'icon-' it would result in .icon-star
+$icon-prefix: '' !default; 
+
+// helper function to get the correct font group
+@function iconfont-group($group: null) {
+	@if (null == $group) {
+		$group: nth(map-keys($__iconfont__data), 1);
+	}
+	@if (false == map-has-key($__iconfont__data, $group)) {
+		@warn 'Undefined Iconfont Family!';
+		@return ();
+	}
+	@return map-get($__iconfont__data, $group);
+}
+
+// helper function to get the correct icon of a group
+@function iconfont-item($name) {
+	$slash: str-index($name, '/');
+	$group: null;
+	@if ($slash) {
+		$group: str-slice($name, 0, $slash - 1);
+		$name: str-slice($name, $slash + 1);
+	} @else {
+		$group: nth(map-keys($__iconfont__data), 1);
+	}
+	$group: iconfont-group($group);
+	@if (false == map-has-key($group, $name)) {
+		@warn 'Undefined Iconfont Glyph!';
+		@return '';
+	}
+	@return map-get($group, $name);
+}
+
+// complete mixing to include the icon
+// usage:
+// .my_icon{ @include iconfont('star') }
+@mixin iconfont($icon, $position: before) {
+  &:#{$position}{
+    font-family: "iconfont";
+    font-style: normal;
+    font-weight: 400;
+    content: iconfont-item($icon);
+  }
+}
+
+// creates the font face tag if the variable is set to true (default)
+@if $create-font-face == true{
+	@font-face {
+	 font-family: "iconfont";
+	 src: url('/iconfont.eot'); /* IE9 Compat Modes */
+	 src: url('/iconfont.eot?#iefix') format('embedded-opentype'); /* IE6-IE8 */
+	 src: url('/iconfont.woff') format('woff'); /* Pretty Modern Browsers */
+	 src: url('/iconfont.ttf') format('truetype'); /* Safari, Android, iOS */
+	 src: url('/iconfont.svg') format('svg'); /* Legacy iOS */
+	}
+}
+

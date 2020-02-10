@@ -1,0 +1,37 @@
+// ==================================================
+//
+// SIZES
+// ==================================================
+
+
+// Breakpoints
+// --------------------------------------------------
+// 1920px
+$desktop-xlarge: 120rem;
+// 1440px
+$desktop-large: 90rem;
+// 1120px
+$tablet-landscape: 70rem;
+// 767px
+$tablet-portrait: 47.9rem;
+// 608px
+$mobile-large: 38rem;
+// 416px
+$mobile-small: 26rem;
+
+
+// Paddings, Margins and Gutters
+// must be in 'em' because of some calc() values
+// --------------------------------------------------
+$desktop-page-padding: 6em;
+$tablet-page-padding: 3em;
+
+$large-mobile-page-padding: 2em;
+$small-mobile-page-padding: 1.5em;
+$mobile-page-padding: $large-mobile-page-padding;
+
+$page-padding: $desktop-page-padding;
+
+$desktop-gutter: 2em;
+$mobile-gutter: 1em;
+$gutter: $desktop-gutter;

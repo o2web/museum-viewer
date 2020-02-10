@@ -1,0 +1,144 @@
+// ==================================================
+//
+// LOADER
+// ==================================================
+
+@import '../../../assets/styles/mixins/mixins';
+@import '../../../assets/styles/variables/variables';
+
+.loader {
+
+  // Animation
+  &__animation {
+    content: "";
+    background-color: $white;
+    position: relative;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    height: 0;
+    transition: opacity 600ms linear 0ms, height 0ms linear 600ms;
+  }
+
+  &__stroke {
+    font-size: 1.5em;
+    position: absolute;
+    width: 1em;
+    height: 2px;
+    background: $black;
+    top: 2em;
+    left: 50%;
+    margin-left: -0.5em;
+    display: none;
+    @for $i from 1 to 6 {
+      &:nth-child(#{$i}) {
+        margin-top: (-0.75em + (($i - 1)  * 0.75em));
+      }
+    }
+    &:nth-child(even) {
+      transform: translateX(0.75em);
+    }
+    &:nth-child(odd) {
+      transform: translateX(-0.75em);
+    }
+  }
+
+  &--is-loading {
+    .loader__animation {
+      height: 5em;
+      opacity: 1;
+      transition-delay: 0ms;
+      transition-duration: 0ms;
+    }
+    .loader__stroke {
+      display: block;
+      &:nth-child(even) {
+        animation: zipper-even 600ms $ease infinite alternate;
+      }
+      &:nth-child(odd) {
+        animation: zipper-odd 600ms $ease infinite alternate;
+      }
+      @for $i from 1 to 6 {
+        &:nth-child(#{$i}) {
+          animation-delay: ($i * 60ms);
+        }
+      }
+    }
+  }
+
+  // Minimalist Animation
+  &__animation--minimalist {
+    .loader__stroke {
+      margin-top: 0;
+      top: 1.75em;
+    }
+  }
+  &--is-loading {
+    .loader__animation--minimalist {
+      .loader__stroke {
+        animation: stretch 1200ms $ease infinite;
+        animation-delay: 0ms;
+      }
+    }
+  }
+
+
+  // fullscreen
+  &--fullscreen {
+    .loader__animation {
+      position: fixed;
+    }
+    .loader__stroke {
+      top: 50%;
+    }
+  }
+  &--fullscreen.loader--is-loading {
+    .loader__animation {
+      height: 100%;
+    }
+  }
+
+
+  // theme variations
+  &--dark {
+    .loader__animation {
+      background: $grey-90;
+    }
+    .loader__stroke {
+      background: $white;
+    }
+  }
+}
+
+
+@keyframes zipper-even {
+  0% {
+    transform: translateX(0.75em);
+  }
+  100% {
+    transform: translateX(-0.75em);
+  }
+}
+
+@keyframes zipper-odd {
+  0% {
+    transform: translateX(-0.75em);
+  }
+  100% {
+    transform: translateX(0.75em);
+  }
+}
+
+@keyframes stretch {
+  0% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(5);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}

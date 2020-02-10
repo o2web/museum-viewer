@@ -1,0 +1,49 @@
+// ==================================================
+//
+// FONTS
+// ==================================================
+
+
+// FONT SMOOTHING
+@mixin font-smoothing($value: on){
+  @if $value == on {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  } @else{
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
+
+@mixin ellipsis($height: 1em, $color: $white) {
+  max-height: $height;
+  overflow: hidden;
+  position: relative;
+  padding-right: 1em;
+  &:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: $color;
+  }
+}
+@mixin no-ellipsis() {
+  max-height: none;
+  overflow: auto;
+  padding-right: 0;
+  &:before,
+  &:after {
+    display: none;
+    content: "";
+  }
+}

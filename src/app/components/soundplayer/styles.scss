@@ -1,0 +1,56 @@
+@import '../../../assets/styles/mixins/mixins';
+@import '../../../assets/styles/variables/variables';
+
+.soundplayer{
+  width: 100%;
+  background-color: #000;
+  .sb-soundplayer-btn{
+    background: none;
+    color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    flex-grow: 0;
+    svg{
+      fill: #fff;
+      width: em(12);
+      height: em(11);
+    }
+  }
+  &__title{
+    font-size: em(12);
+  }
+  &__display{
+    padding: em(10);
+    display: flex;
+    flex-direction: column;
+  }
+  &__controls{
+    padding: em(10);
+    display: flex;
+    align-items: center;
+  }
+  .sb-soundplayer-timer{
+    flex-shrink: 0;
+    flex-grow: 0;
+    font-size: em(10);
+  }
+  .sb-soundplayer-progress-container{
+    width: 100%;
+    height: em(5);
+    background-color: $grey-50;
+    margin: 0 em(8);
+    .sb-soundplayer-progress-inner{
+      background-color: $grey-10;
+      height: 100%;
+    }
+  }
+  &__icon{
+    @include iconfont('sound');
+    font-size: 4em;
+    margin: 0.5em 0;
+    text-align: center;
+  }
+}

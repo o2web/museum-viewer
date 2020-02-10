@@ -1,0 +1,108 @@
+// ==================================================
+//
+// BUTTONS
+// ==================================================
+
+// REGULAR BUTTONS
+@mixin button ($color: $black) {
+  color: $color;
+  display: inline-block;
+  font-size: 1.25em;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: left;
+  @include font-smoothing();
+  position: relative;
+  padding: 1.25em  3em 1.25em 0;
+  margin: 0 1.25em;
+  transform: translateX(-1.25em);
+  transition: transform 120ms $ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+
+  // arrow right
+  @include iconfont('arrow-right');
+  &:before{
+    position: absolute;
+    font-size: 1.75em;
+    top: 50%;
+    right: 0;
+    line-height: 0;
+    color: rgba($color, 0.3);
+    transition: color 90ms ease;
+  }
+
+  // underline
+  &:after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.1em;
+    height: 0.25em;
+    width: 100%;
+    background: $color;
+    transform: translateX(2.5em);
+    transition: transform 120ms $ease, background 90ms ease;
+  }
+
+  // hover
+  &:hover{
+    color: $color;
+    transform: translateX(0em);
+    &:after{
+      transform: translateX(0em);
+    }
+  }
+
+  // active
+  &:active{
+    &:before{
+      color: $color;
+    }
+    &:after{
+      background: $grey-10;
+    }
+  }
+
+  @include mobile-only() {
+    font-size: 1em;
+  }
+}
+
+
+// BLACK BUTTONS (IMPORTANT)
+@mixin black-button () {
+  text-align: center;
+  padding: 1.5em 1.25em 2.75em;
+  background-color: #000;
+  display: block;
+  a{
+    @include button($white);
+    margin: 0 3em;
+  }
+}
+
+// SMALL BUTTONS
+@mixin small-button () {
+  font-size: 1em;
+  font-weight: 400;
+  text-transform: uppercase;
+  background: none;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  &:hover {
+    border-bottom: 1px solid currentColor;
+  }
+}
+
+
+// SMALL LINKS
+@mixin small-link () {
+  font-family: $serif;
+  font-style: italic;
+  text-decoration: underline;
+}

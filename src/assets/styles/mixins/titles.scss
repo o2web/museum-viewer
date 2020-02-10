@@ -1,0 +1,148 @@
+// ==================================================
+//
+// TITLES
+// ==================================================
+
+@mixin page-title($align: 'center', $borders: 'top bottom') {
+  font-family: $sans;
+  font-size: 2.125em;
+  font-weight: 300;
+  line-height: 1.2;
+  text-transform: uppercase;
+  margin: 0.75em 0 1.5em;
+  padding: 1.2em 0;
+  position: relative;
+  @include font-smoothing();
+  @if $align == 'left' {
+    text-align: left;
+  }
+  @if $align == 'center' {
+    text-align: center;
+  }
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 4em;
+    top: 0;
+    z-index: 0;
+    @if str-index($borders, 'top') {
+      border-top: 1px solid currentColor;
+    }
+    @if str-index($borders, 'bottom') {
+      border-bottom: 1px solid currentColor;
+    }
+    @if $align == 'left' {
+      left: 0;
+    }
+    @if $align == 'center' {
+      left: 50%;
+      margin-left: -2em;
+    }
+  }
+
+  @include mobile-only() {
+    font-size: 1.6em;
+  }
+}
+
+@mixin page-title-serif($align: 'center', $borders: 'top bottom') {
+  @include page-title($align, $borders);
+  text-transform: none;
+  font-family: $serif;
+  font-size: 2.5em;
+  font-weight: 300;
+  font-style: italic;
+}
+
+@mixin banner-title() {
+  @include page-title('left', 'top bottom');
+}
+
+@mixin section-title() {
+  font-family: $serif;
+  font-size: 2.875em;
+  font-style: italic;
+  margin: 2em 0 1em;
+  @include font-smoothing();
+  &:before{
+    display: inline-block;
+    content: "";
+    height: 1px;
+    width: $page-padding / 2.875;
+    line-height: 1px;
+    vertical-align: middle;
+    margin-right: 0.6em;
+    background: $grey-90;
+
+  }
+  @include max-width($tablet-landscape){
+    &:before{
+      width: $mobile-page-padding / 2.875;
+    }
+  }
+  @include mobile-only(){
+    font-size: 2.25em;
+    &:before{
+      width: $mobile-page-padding / 2.25;
+      margin-right: 0.4em;
+    }
+  }
+}
+
+@mixin subtitle() {
+  font-family: $serif;
+  font-size: 1.875em;
+  font-style: italic;
+  margin: 1em 0 1em;
+  @include font-smoothing();
+  @include mobile-only(){
+    font-size: 1.75em;
+  }
+}
+
+
+@mixin watermark-title(){
+  font-family: $serif;
+  font-size: 24vw;
+  font-style: normal;
+  font-weight: 400;
+  text-transform: none;
+  color: rgba($black, 0.02);
+  text-align: center;
+  white-space: nowrap;
+  position: absolute;
+  width: 400%;
+  top: 50%;
+  margin-top: -0.6em;
+  left: -150%;
+  z-index: -1;
+  @include font-smoothing();
+  pointer-events: none;
+}
+
+@mixin card-title() {
+  font-family: $sans;
+  font-weight: 300;
+  font-size: 1.125em;
+  line-height: 1.25;
+  text-transform: uppercase;
+  margin: 0 0 0.625em;
+}
+
+@mixin card-subtitle() {
+  font-family: $serif;
+  font-style: italic;
+  font-size: 1.2em;
+  line-height: 1.25;
+}
+
+@mixin small() {
+  opacity: 0.75;
+  font-size: 0.75em;
+  line-height: 1.2;
+}
+@mixin copyright() {
+  @include small();
+}

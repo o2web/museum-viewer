@@ -1,1 +1,5 @@
-example/**
+src/registerServiceWorker.js
+src/config/locales/en/*
+src/config/locales/fr/*
+tools/*
+src/config/graphql/tasks/build-schema.js

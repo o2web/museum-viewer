@@ -1,0 +1,13 @@
+// ==================================================
+//
+// SHADOWS
+// ==================================================
+
+@mixin shadows ($theme: 'light') {
+  @if $theme == 'light' {
+    box-shadow: 0 2.25em 3.75em 0 rgba($black, 0.2);
+  }
+  @if $theme == 'dark' {
+    box-shadow: 0 2.25em 3.75em 0 rgba($black, 0.4);
+  }
+}
