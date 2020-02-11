@@ -1,18 +1,17 @@
 // libs
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { NavLink, withRouter } from 'react-router-dom';
-import { translatePath } from 'o2web-react-core';
+import { withRouter } from 'react-router-dom';
+
+// Components
+import GalleryUi from './render/GalleryUi';
+
+// Store
 import galleryStore from '../../../config/redux/store';
 import connectWithStore from '../../helpers/connectWithStore';
 
-// Components
-import Viewer from './render/Viewer';
-import Loader from '../loader/Loader';
-
 // Styles
-import './render/styles.scss';
+import iconFont from '../../../assets/fonts/icons/iconfont.woff';
 
 // actions
 import galleryActions from '../../actions/gallery/index';
@@ -21,7 +20,7 @@ class Gallery extends Component {
   constructor(props) {
     super(props);
     this.toggleInfo = this.toggleInfo.bind(this);
-    this.closeButton = this.closeButton.bind(this);
+    this.closeMedia = this.closeMedia.bind(this);
     this.resetMedia = this.resetMedia.bind(this);
     this.prevMedia = this.prevMedia.bind(this);
     this.nextMedia = this.nextMedia.bind(this);
@@ -79,7 +78,7 @@ class Gallery extends Component {
   }
 
   // Close Gallery
-  closeButton() {
+  closeMedia() {
     const { history } = this.props;
     history.goBack();
   }
@@ -126,80 +125,37 @@ class Gallery extends Component {
       active,
       loading,
       artworkID,
-      artworkMedia: {
-        name,
-        artists = [],
-        uploads = [{}],
-        materials,
-        prettyInfo,
-        imageRights,
-        productionDate,
-      },
+      artworkMedia,
     } = this.props;
     const { t } = this.context;
     const { showInfo, currentMedia } = this.state;
-    const { prevMedia, nextMedia, closeButton } = this;
-
-    const media = uploads[currentMedia];
-
+    const { prevMedia, nextMedia, closeMedia, toggleInfo } = this;
     return (
       <div className="gallery">
         {active &&
-          <div>
-            <Loader loading={loading} fullscreen animated dark />
-            {media && media.mediaUrl &&
-              <Viewer key={currentMedia} title={name} media={media} />
-            }
-            <button onClick={closeButton} className="gallery__button gallery__button--close" />
-
-            <div className="gallery__toolbar">
-              <div className={classNames('gallery__info', { 'gallery__info--extended': showInfo })}>
-                <div
-                  role="button"
-                  className="gallery__info-toggle"
-                  onClick={this.toggleInfo}
-                  onKeyPress={this.toggleInfo}
-                  tabIndex="0"
-                >
-                  <h2>{artists.map(artist => artist.name).join('; ')}</h2>
-                  <h3>{name}</h3>
-                  <span className="gallery__info-icon" />
-                </div>
-                <div className="gallery__info-content">
-                  {materials && <p className="gallery__info-content__material">{materials}</p>}
-                  {productionDate && <p className="gallery__info-content__date">{productionDate}</p>}
-                  {prettyInfo && <p className="gallery__info-content__description">{prettyInfo}</p>}
-                  {imageRights && <small className="gallery__info-content__image-rights">{imageRights}</small>}
-                  <div className="gallery__info-content__link">
-                    <NavLink to={`${translatePath('artwork', t)}/${artworkID}`}>
-                      {t('pages.gallery.viewArtwork')}
-                    </NavLink>
-                  </div>
-                </div>
-              </div>
-
-              {uploads.length > 1 &&
-                <div className="gallery__playlist">
-                  <button onClick={prevMedia} className="gallery__button gallery__button--prev" />
-                  <div className="gallery__counter">
-                    <span className="gallery__counter__index">{currentMedia + 1}</span>
-                    <span className="gallery__counter__count">{uploads.length}</span>
-                  </div>
-                  <button onClick={nextMedia} className="gallery__button gallery__button--next" />
-                </div>
-              }
-
-              <div className="gallery__controls">
-                <button id="gallery-zoom-out" className="gallery__button gallery__button--zoom-out" />
-                <button id="gallery-zoom-in" className="gallery__button gallery__button--zoom-in" />
-              </div>
-
-              <div className="gallery__navigator">
-                <div id="gallery-navigator" />
-              </div>
-            </div>
-
-          </div>
+          <Fragment>
+            <GalleryUi
+              t={t}
+              active={active}
+              loading={loading}
+              artworkID={artworkID}
+              artworkMedia={artworkMedia}
+              showInfo={showInfo}
+              toggleInfo={toggleInfo}
+              currentMedia={currentMedia}
+              prevMedia={prevMedia}
+              nextMedia={nextMedia}
+              closeMedia={closeMedia}
+            />
+            <style>
+              {`
+                @font-face {
+                  font-family: "iconfont";
+                  src: url(data:application/x-font-woff;charset=utf-8;base64,${btoa(iconFont)}) format('woff');
+                }
+              `}
+            </style>
+          </Fragment>
         }
       </div>
     );

@@ -4,7 +4,7 @@ const TEMPLATE = `
 $create-font-face: true !default; // should the @font-face tag get created?
 
 // should there be a custom class for each icon? will be .filename
-$create-icon-classes: true !default; 
+$create-icon-classes: true !default;
 
 // what is the common class name that icons share? in this case icons need to have .icon.filename in their classes
 // this requires you to have 2 classes on each icon html element, but reduced redeclaration of the font family
@@ -15,7 +15,7 @@ $icon-common-class: 'icon' !default;
 // if this string stays empty, your classes will use the filename, for example
 // an icon called star.svg will result in a class called .star
 // if you use the prefix to be 'icon-' it would result in .icon-star
-$icon-prefix: '' !default; 
+$icon-prefix: '' !default;
 
 // helper function to get the correct font group
 @function iconfont-group($group: null) {
@@ -80,7 +80,7 @@ function toSCSS(glyphs) {
 		.replace(/\\\\/g, '\\');
 }
 
-module.exports = function(args) {
+export default (args) => {
 	const family = args.family;
 	const pathToFonts = args.fontPath;
 	const glyphs = args.unicodes.reduce(function(glyphs, glyph) {

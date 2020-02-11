@@ -1,17 +1,17 @@
 import babel from 'rollup-plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
+import json from '@rollup/plugin-json';
 import url from '@rollup/plugin-url';
 import external from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
-import json from '@rollup/plugin-json';
 import { eslint } from 'rollup-plugin-eslint';
-import del from 'rollup-plugin-delete';
 import pkg from './package.json';
 
 export default [
   {
     input: 'src/index.js',
+    // Output
     output: [
       {
         file: pkg.main,
@@ -24,27 +24,30 @@ export default [
         sourcemap: true,
       },
     ],
+    // Plugins
     plugins: [
-      del({ targets: ['dist/*'] }),
       eslint({
         exclude: [
           '**/*.scss',
+          '**/*.woff',
         ],
       }),
       external(),
       postcss(),
-      url(),
       json(),
+      url({
+        include: ['**/*.woff', '**/*.woff2'],
+        limit: Infinity,
+      }),
       babel({
-        exclude: [
-          'node_modules/**',
-        ],
+        exclude: ['node_modules/**'],
         externalHelpers: true,
         runtimeHelpers: true,
       }),
       resolve(),
       commonjs(),
     ],
+    // Exclude peer dependencies
     external: Object.keys(pkg.peerDependencies || {}),
   },
 ];
