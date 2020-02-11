@@ -227,7 +227,6 @@ Gallery.contextTypes = {
 };
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     loading: state.gallery.loading,
     artworkMedia: state.gallery.result,

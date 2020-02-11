@@ -32,9 +32,7 @@ export default [
         ],
       }),
       external(),
-      postcss({
-        modules: true,
-      }),
+      postcss(),
       url(),
       json(),
       babel({

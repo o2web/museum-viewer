@@ -1,0 +1,14 @@
+@import "../tools/colors";
+
+.separator {
+  margin: 1em auto;
+
+  &--choices {
+    color: $secondary;
+    &:before,
+    &:after {
+      content: "—";
+      margin: 0.25em;
+    }
+  }
+}

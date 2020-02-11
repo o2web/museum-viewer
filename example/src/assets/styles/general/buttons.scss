@@ -1,0 +1,40 @@
+@import "../tools/colors";
+@import "../tools/sizes";
+
+
+.button {
+  display: inline-block;
+  cursor: pointer;
+  color: $white;
+  text-align: left;
+  background: $primaryDark;
+  padding: 0.75em 1em;
+  border-radius: $buttonRadius;
+  border: none;
+  border-bottom: 0.16rem solid $black;
+  transform: translateY(0rem);
+  transition: background-color 90ms ease, transform 60ms ease;
+  &:hover {
+    background: $black;
+  }
+  &:active {
+    border-bottom: none;
+    transform: translateY(0.16rem);
+  }
+  &[disabled]{
+    opacity: 0.75;
+  }
+
+
+  &--light {
+    color: $black;
+    background: $secondaryLight;
+    border-bottom: none;
+    &:hover {
+      background: $secondary;
+    }
+    &:active {
+      border-bottom: none;
+    }
+  }
+}

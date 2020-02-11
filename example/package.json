@@ -1,0 +1,53 @@
+{
+  "name": "groupe-etude",
+  "version": "0.0.1",
+  "engines": {
+    "node": "^10.0.0"
+  },
+  "private": true,
+  "dependencies": {
+    "babel-eslint": "^8.2.6",
+    "core-js": "^2.6.9",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "final-form": "^4.18.5",
+    "google-map-react": "^1.1.4",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.10.1",
+    "museum-viewer": "file:..",
+    "node-fetch": "^2.3.0",
+    "o2web-react-core": "^0.3.5",
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0",
+    "react-app-rewire-eslint": "^0.2.3",
+    "react-app-rewire-scss": "^1.0.2",
+    "react-app-rewired": "^1.6.2",
+    "react-breadcrumbs": "^2.1.7",
+    "react-cookie": "^2.2.0",
+    "react-dom": "^16.9.0",
+    "react-final-form": "^6.3.0",
+    "react-helmet": "^5.2.1",
+    "react-loader-spinner": "^3.1.4",
+    "react-redux": "^5.1.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "react-transition-group": "^4.3.0",
+    "redux": "^4.0.4",
+    "redux-action-creator": "^2.3.0",
+    "redux-form": "^7.4.2",
+    "redux-i18n": "^1.5.18",
+    "redux-thunk": "^2.3.0"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-scripts eject",
+    "start-js": "react-scripts start",
+    "lint": "jshint .",
+    "validate": "npm ls"
+  }
+}

@@ -1,0 +1,51 @@
+
+.app {
+  &__wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 36rem;
+    min-height: 100%;
+    margin: 0 auto;
+    padding: 2em;
+    z-index: 10;
+  }
+
+  &__nav {
+    ul {
+      display: flex;
+      flex-flow: row nowrap;
+    }
+    li {
+      display: block;
+      flex-grow: 1;
+    }
+    a {
+      padding: 1em 0;
+      display: block;
+    }
+  }
+}
+
+.fade {
+  &-enter {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  &-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 300ms,
+                transform 300ms;
+  }
+  &-exit {
+    opacity: 1;
+    transform: scale(1);
+  }
+  &-exit-active {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 300ms,
+                transform 300ms;
+  }
+}
+

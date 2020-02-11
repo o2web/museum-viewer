@@ -1,0 +1,4 @@
+src/registerServiceWorker.js
+src/config/locales/en/*
+src/config/locales/fr/*
+tools/*

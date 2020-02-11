@@ -11,9 +11,7 @@ export function asyncQuery(
   params = {},
 ) {
   return (dispatch, getState) => {
-    dispatch({ type });
     const locale = { locale: getState().i18nState.lang };
-
     const promise = client.query({
       query: gql(query),
       fetchPolicy: 'network-only',
@@ -26,14 +24,12 @@ export function asyncQuery(
         const errors = data.errors || [];
         const responseType = response.errors || errors.length > 0 ? fail : success;
         dispatch({ type: `${type}_${responseType}`, payload });
-
         return payload;
       })
       .catch((errors) => {
         dispatch({ type: `${type}_${fail}` });
         if (window) window.console.log(errors);
       });
-
     return promise;
   };
 }
