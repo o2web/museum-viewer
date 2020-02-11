@@ -1,7 +1,6 @@
 import gql from 'graphql-tag';
 import { stopSubmit } from 'redux-form';
 import client from './client';
-import actions from '../../app/actions/promises';
 
 const success = 'SUCCESS';
 const fail = 'FAIL';
@@ -34,8 +33,6 @@ export function asyncQuery(
         dispatch({ type: `${type}_${fail}` });
         if (window) window.console.log(errors);
       });
-
-    dispatch(actions.addPromise(promise));
 
     return promise;
   };
@@ -77,8 +74,6 @@ export function asyncMutation(
         dispatch({ type: `${type}_${fail}` });
         if (window) window.console.log(errors);
       });
-
-    dispatch(actions.addPromise(promise));
 
     return promise;
   };
