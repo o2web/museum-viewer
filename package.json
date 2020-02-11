@@ -16,7 +16,7 @@
     "dist"
   ],
   "scripts": {
-    "start": "react-app-rewired start",
+    "start": "npm run build-watch",
     "build": "npm run prebuild && rollup -c",
     "build-watch": "npm run prebuild && rollup -c -w",
     "test": "react-app-rewired test --env=jsdom",
@@ -63,7 +63,8 @@
     "apollo-boost": "^0.1.12",
     "apollo-cache-inmemory": "^1.3.5",
     "apollo-client": "^2.4.2",
-    "apollo-link-http": "^1.5.5",
+    "apollo-link": "^1.2.3",
+    "apollo-link-http": "^1.5.16",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.5",
     "babel-plugin-external-helpers": "^6.22.0",

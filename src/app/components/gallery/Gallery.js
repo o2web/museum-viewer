@@ -1,10 +1,11 @@
 // libs
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { NavLink, withRouter } from 'react-router-dom';
 import { translatePath } from 'o2web-react-core';
+import galleryStore from '../../../config/redux/store';
+import connectWithStore from '../../helpers/connectWithStore';
 
 // Components
 import Viewer from './render/Viewer';
@@ -14,7 +15,7 @@ import Loader from '../loader/Loader';
 import './render/styles.scss';
 
 // actions
-import actions from '../../actions/gallery/index';
+import galleryActions from '../../actions/gallery/index';
 
 class Gallery extends Component {
   constructor(props) {
@@ -226,6 +227,7 @@ Gallery.contextTypes = {
 };
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
     loading: state.gallery.loading,
     artworkMedia: state.gallery.result,
@@ -235,4 +237,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default withRouter(connect(mapStateToProps, actions)(Gallery));
+export default withRouter(
+  connectWithStore(galleryStore, Gallery, mapStateToProps, galleryActions),
+);

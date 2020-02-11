@@ -10,10 +10,12 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case types.OPEN_GALLERY:
+      console.log('open gallery');
       return { ...state, active: true, artworkID: action.artworkID, startAt: action.startAt };
     case types.CLOSE_GALLERY:
       return { ...state, active: false };
     case types.FETCH_ARTWORK_MEDIA:
+      console.log('fetching');
       return { ...state, loading: true, result: {} };
     case types.FETCH_ARTWORK_MEDIA_SUCCESS:
       return { ...state, loading: false, result: action.payload.artwork };
