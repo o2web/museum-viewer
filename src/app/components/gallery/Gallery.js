@@ -12,7 +12,6 @@ import connectWithStore from '../../helpers/connectWithStore';
 
 // Styles
 import iconFontWOFF from '../../../assets/fonts/icons/gallery-icons.woff';
-// import iconFontTTF from '../../../assets/fonts/icons/gallery-icons.ttf';
 
 // actions
 import galleryActions from '../../actions/gallery/index';

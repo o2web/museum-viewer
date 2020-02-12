@@ -2,11 +2,12 @@
 import React from 'react';
 import { GalleryToggle } from 'museum-viewer';
 
-const Single = () => (
+const Page = () => (
   <section>
     <h2 className="title title--section">
-      Oeuvre avec image unique
+      Image seule
     </h2>
+    <p>Hollywood - Alfred Pellan</p>
     <GalleryToggle artworkID="600043576">
       <span className="button">
         Ouvrir la visionneuse
@@ -16,4 +17,4 @@ const Single = () => (
 );
 
 
-export default Single;
+export default Page;
