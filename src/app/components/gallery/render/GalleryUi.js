@@ -33,7 +33,6 @@ function GalleryUi(props) {
     toggleInfo,
     closeMedia,
   } = props;
-
   const media = uploads[currentMedia];
 
   return (
@@ -67,7 +66,7 @@ function GalleryUi(props) {
             <small className="gallery__info-content__image-rights">{imageRights}</small>}
             <div className="gallery__info-content__link">
               <NavLink to={`${translatePath('artwork', t)}/${artworkID}`}>
-                {t('pages.gallery.viewArtwork')}
+                {t('gallery.viewArtwork')}
               </NavLink>
             </div>
           </div>

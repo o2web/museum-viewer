@@ -1,10 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
+import I18n from 'redux-i18n';
+import translations, {
+  defaultLanguage,
+} from '../../config/locales/translations';
 
 function connectWithStore(store, WrappedComponent, ...args) {
-  const ConnectedWrappedComponent = connect(...args)(WrappedComponent);
+  const ConnectedComponent = connect(...args)(WrappedComponent);
   return function (props) {
-    return <ConnectedWrappedComponent {...props} store={store} />;
+    return (
+      <Provider store={store}>
+        <I18n translations={translations} initialLang={defaultLanguage}>
+          <ConnectedComponent {...props} />
+        </I18n>
+      </Provider>
+    );
   };
 }
 

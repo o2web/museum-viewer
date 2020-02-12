@@ -88,6 +88,7 @@
       p {
         font-size: 0.875em;
         margin-bottom: 0;
+        max-width: none;
       }
       &__image-rights {
         @include copyright();

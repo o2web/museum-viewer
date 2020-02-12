@@ -63,7 +63,7 @@ class Gallery extends Component {
     if (active) {
       // gallery is visible
       if (!this.unlistenHistory) {
-        history.push(`${history.location.pathname}#${t('pages.gallery.slug')}`);
+        history.push(`${history.location.pathname}#${t('gallery.slug')}`);
 
         this.unlistenHistory = history.listen(() => {
           closeGallery();
