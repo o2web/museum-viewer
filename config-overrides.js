@@ -12,7 +12,7 @@ module.exports = function override(config, env) {
     new IconfontPlugin({
       cssTemplate,
       src: './src/assets/icons',
-      family: 'iconfont',
+      family: 'gallery-icons',
       dest: {
         font: './src/assets/fonts/icons/[family].[type]',
         css: './src/assets/fonts/icons/icons.scss',

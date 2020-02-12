@@ -5,3 +5,6 @@ tools/*
 src/config/graphql/tasks/*
 **/*.scss
 **/*.sass
+**/*.woff
+**/*.woff2
+**/*.ttf

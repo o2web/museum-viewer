@@ -1,5 +1,5 @@
 // libs
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
@@ -11,7 +11,8 @@ import galleryStore from '../../../config/redux/store';
 import connectWithStore from '../../helpers/connectWithStore';
 
 // Styles
-import iconFont from '../../../assets/fonts/icons/iconfont.woff';
+import iconFontWOFF from '../../../assets/fonts/icons/gallery-icons.woff';
+// import iconFontTTF from '../../../assets/fonts/icons/gallery-icons.ttf';
 
 // actions
 import galleryActions from '../../actions/gallery/index';
@@ -19,6 +20,17 @@ import galleryActions from '../../actions/gallery/index';
 class Gallery extends Component {
   constructor(props) {
     super(props);
+    const iconFontFamily = `
+      @font-face {
+        font-family: "gallery-icons";
+        src: url(${iconFontWOFF}) format('woff');
+      }
+    `;
+    const styleTag = document.createElement('style');
+    styleTag.setAttribute('type', 'text/css');
+    styleTag.appendChild(document.createTextNode(iconFontFamily));
+    document.head.appendChild(styleTag);
+
     this.toggleInfo = this.toggleInfo.bind(this);
     this.closeMedia = this.closeMedia.bind(this);
     this.resetMedia = this.resetMedia.bind(this);
@@ -133,29 +145,19 @@ class Gallery extends Component {
     return (
       <div className="gallery">
         {active &&
-          <Fragment>
-            <GalleryUi
-              t={t}
-              active={active}
-              loading={loading}
-              artworkID={artworkID}
-              artworkMedia={artworkMedia}
-              showInfo={showInfo}
-              toggleInfo={toggleInfo}
-              currentMedia={currentMedia}
-              prevMedia={prevMedia}
-              nextMedia={nextMedia}
-              closeMedia={closeMedia}
-            />
-            <style>
-              {`
-                @font-face {
-                  font-family: "iconfont";
-                  src: url(data:application/x-font-woff;charset=utf-8;base64,${btoa(iconFont)}) format('woff');
-                }
-              `}
-            </style>
-          </Fragment>
+          <GalleryUi
+            t={t}
+            active={active}
+            loading={loading}
+            artworkID={artworkID}
+            artworkMedia={artworkMedia}
+            showInfo={showInfo}
+            toggleInfo={toggleInfo}
+            currentMedia={currentMedia}
+            prevMedia={prevMedia}
+            nextMedia={nextMedia}
+            closeMedia={closeMedia}
+          />
         }
       </div>
     );

@@ -36,7 +36,7 @@ export default [
       postcss(),
       json(),
       url({
-        include: ['**/*.woff', '**/*.woff2'],
+        include: ['**/*.woff', '**/*.woff2', '**/*.ttf'],
         limit: Infinity,
       }),
       babel({

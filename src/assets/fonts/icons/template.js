@@ -80,7 +80,7 @@ function toSCSS(glyphs) {
 		.replace(/\\\\/g, '\\');
 }
 
-export default (args) => {
+module.exports = function(args) {
 	const family = args.family;
 	const pathToFonts = args.fontPath;
 	const glyphs = args.unicodes.reduce(function(glyphs, glyph) {
@@ -90,15 +90,15 @@ export default (args) => {
 	const data = {};
 	data[family] = glyphs;
 
-    const replacements = {
-        __FAMILY__: family,
-        __RELATIVE_FONT_PATH__: pathToFonts,
-        goat:"cat"
-    };
+	const replacements = {
+		__FAMILY__: family,
+		__RELATIVE_FONT_PATH__: pathToFonts,
+		goat:"cat"
+	};
 
-    const str = TEMPLATE.replace(/__FAMILY__|__RELATIVE_FONT_PATH__|goat/gi, function(matched){
-        return replacements[matched];
-    });
+	const str = TEMPLATE.replace(/__FAMILY__|__RELATIVE_FONT_PATH__|goat/gi, function(matched){
+		return replacements[matched];
+	});
 
 	return [
 		`$__iconfont__data: map-merge(if(global_variable_exists('__iconfont__data'), $__iconfont__data, ()), ${toSCSS(data)});`,

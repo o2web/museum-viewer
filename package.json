@@ -16,7 +16,7 @@
     "dist"
   ],
   "scripts": {
-    "start": "npm run build-watch",
+    "start": "react-app-rewired start",
     "build": "npm run prebuild && rollup -c",
     "build-watch": "npm run prebuild && rollup -c -w",
     "test": "react-app-rewired test --env=jsdom",

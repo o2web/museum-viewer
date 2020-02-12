@@ -1,43 +1,14 @@
 $__iconfont__data: map-merge(if(global_variable_exists('__iconfont__data'), $__iconfont__data, ()), (
-	"iconfont": (
-		"account": "\ea01",
-		"albums": "\ea02",
-		"arrow-right": "\ea03",
-		"check": "\ea04",
-		"chevron-left-light": "\ea05",
-		"chevron-right-light": "\ea06",
-		"close-light": "\ea07",
-		"close": "\ea08",
-		"compass": "\ea09",
-		"facebook": "\ea0a",
-		"git": "\ea0b",
-		"github": "\ea0c",
-		"heart-full": "\ea0d",
-		"heart": "\ea0e",
-		"home": "\ea0f",
-		"info": "\ea10",
-		"instagram": "\ea11",
-		"link": "\ea12",
-		"linkedin": "\ea13",
-		"menu": "\ea14",
-		"minus-light": "\ea15",
-		"minus": "\ea16",
-		"next": "\ea17",
-		"no": "\ea18",
-		"pinterest": "\ea19",
-		"plus-light": "\ea1a",
-		"plus": "\ea1b",
-		"reset-light": "\ea1c",
-		"search": "\ea1d",
-		"select": "\ea1e",
-		"share": "\ea1f",
-		"sound": "\ea20",
-		"tag": "\ea21",
-		"twitter": "\ea22",
-		"vimeo": "\ea23",
-		"yes": "\ea24",
-		"youtube": "\ea25",
-		"zoom": "\ea26"
+	"gallery-icons": (
+		"arrow-right": "\ea01",
+		"chevron-left-light": "\ea02",
+		"chevron-right-light": "\ea03",
+		"close-light": "\ea04",
+		"info": "\ea05",
+		"minus-light": "\ea06",
+		"plus-light": "\ea07",
+		"sound": "\ea08",
+		"zoom": "\ea09"
 	)
 ));
 
@@ -93,7 +64,7 @@ $icon-prefix: '' !default;
 // .my_icon{ @include iconfont('star') }
 @mixin iconfont($icon, $position: before) {
   &:#{$position}{
-    font-family: "iconfont";
+    font-family: "gallery-icons";
     font-style: normal;
     font-weight: 400;
     content: iconfont-item($icon);
@@ -101,14 +72,14 @@ $icon-prefix: '' !default;
 }
 
 // creates the font face tag if the variable is set to true (default)
-@if $create-font-face == true {
+@if $create-font-face == true{
 	@font-face {
-	 font-family: "iconfont";
-	 src: url('/iconfont.eot'); /* IE9 Compat Modes */
-	 src: url('/iconfont.eot?#iefix') format('embedded-opentype'); /* IE6-IE8 */
-	 src: url('/iconfont.woff') format('woff'); /* Pretty Modern Browsers */
-	 src: url('/iconfont.ttf') format('truetype'); /* Safari, Android, iOS */
-	 src: url('/iconfont.svg') format('svg'); /* Legacy iOS */
+	 font-family: "gallery-icons";
+	 src: url('/gallery-icons.eot'); /* IE9 Compat Modes */
+	 src: url('/gallery-icons.eot?#iefix') format('embedded-opentype'); /* IE6-IE8 */
+	 src: url('/gallery-icons.woff') format('woff'); /* Pretty Modern Browsers */
+	 src: url('/gallery-icons.ttf') format('truetype'); /* Safari, Android, iOS */
+	 src: url('/gallery-icons.svg') format('svg'); /* Legacy iOS */
 	}
 }
 
