@@ -29,8 +29,8 @@ function Viewer(props) {
   } = props;
 
   const videoOpts = {
-    height: '390',
-    width: '640',
+    height: '100%',
+    width: '100%',
     playerVars: {
       modestbranding: 1,
       rel: 0,
@@ -42,13 +42,12 @@ function Viewer(props) {
       <OpenSeaDragon media={media} />
     ),
     video: (
-      <div className="card__youtube-player youtube-player">
-        <div className="card__youtube-player__iframe-wrapper youtube-player__iframe-wrapper">
-          <YouTube
-            videoId={media && media.mediaUrl && getYoutubeId(media.mediaUrl)}
-            opts={videoOpts}
-          />
-        </div>
+      <div className="youtube-player">
+        <YouTube
+          containerClassName="youtube-player__iframe-wrapper"
+          videoId={media && media.mediaUrl && getYoutubeId(media.mediaUrl)}
+          opts={videoOpts}
+        />
       </div>
     ),
     audio: (
