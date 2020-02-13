@@ -39,7 +39,7 @@
     "node-sass": "^4.13.1",
     "node-fetch": "^2.3.0",
     "o2web-react-core": "^0.9.1",
-    "react-openseadragon": "git+https://github.com/UMNLibraries/react-openseadragon.git",
+    "react-openseadragon": "UMNLibraries/react-openseadragon",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
