@@ -45,9 +45,17 @@ export default [
         runtimeHelpers: true,
       }),
       resolve(),
-      commonjs(),
+      commonjs({
+        namedExports: {
+          'node_modules/react-soundplayer/addons.js': ['withCustomAudio'],
+          'node_modules/react-soundplayer/components.js': ['PlayButton', 'Timer', 'Progress'],
+        },
+      }),
     ],
-    // Exclude peer dependencies
-    external: Object.keys(pkg.peerDependencies || {}),
+    external: [
+      ...Object.keys(pkg.peerDependencies || {}),
+      ...Object.keys(pkg.dependencies || {}),
+      ...Object.keys(pkg.devDependencies || {}),
+    ],
   },
 ];
