@@ -1,11 +1,11 @@
 // libs
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import OpenSeadragon from 'openseadragon';
 
 // Styles
 import './render/styles.scss';
 
-const OpenSeadragon = typeof document !== 'undefined' && document ? require('openseadragon') : {};
 
 class OpenSeaDragon extends Component {
   constructor(props) {
