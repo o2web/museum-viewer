@@ -14,13 +14,15 @@ class OpenSeaDragon extends Component {
   }
 
   componentDidMount() {
-    this.initOSD();
+    if (document) {
+      this.initOSD();
+    }
   }
 
   componentDidUpdate(prevProps) {
     const { media: prevMedia } = prevProps;
     const { media: currentMedia } = this.props;
-    if (prevMedia !== currentMedia) {
+    if ((prevMedia !== currentMedia) && document) {
       this.initOSD();
     }
   }
