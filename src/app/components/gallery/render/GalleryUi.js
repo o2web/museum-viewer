@@ -38,7 +38,7 @@ function GalleryUi(props) {
   return (
     <Fragment>
       <Loader loading={loading} fullscreen animated dark />
-      {media && media.mediaUrl &&
+      {media && media.mediaUrl && document &&
         <Viewer key={currentMedia} title={name} media={media} />
       }
       <button onClick={closeMedia} className="gallery__button gallery__button--close" />
