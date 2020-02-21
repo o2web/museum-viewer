@@ -143,7 +143,7 @@ class Gallery extends Component {
     const { prevMedia, nextMedia, closeMedia, toggleInfo } = this;
     return (
       <div className="gallery">
-        {active &&
+        {document && active &&
           <GalleryUi
             t={t}
             active={active}
