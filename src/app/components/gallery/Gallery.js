@@ -19,16 +19,18 @@ import galleryActions from '../../actions/gallery/index';
 class Gallery extends Component {
   constructor(props) {
     super(props);
-    const iconFontFamily = `
-      @font-face {
-        font-family: "gallery-icons";
-        src: url(${iconFontWOFF}) format('woff');
-      }
-    `;
-    const styleTag = document.createElement('style');
-    styleTag.setAttribute('type', 'text/css');
-    styleTag.appendChild(document.createTextNode(iconFontFamily));
-    document.head.appendChild(styleTag);
+    if (typeof document !== 'undefined' && document.createElement && document.head) {
+      const iconFontFamily = `
+        @font-face {
+          font-family: "gallery-icons";
+          src: url(${iconFontWOFF}) format('woff');
+        }
+      `;
+      const styleTag = document.createElement('style');
+      styleTag.setAttribute('type', 'text/css');
+      styleTag.appendChild(document.createTextNode(iconFontFamily));
+      document.head.appendChild(styleTag);
+    }
 
     this.toggleInfo = this.toggleInfo.bind(this);
     this.closeMedia = this.closeMedia.bind(this);
