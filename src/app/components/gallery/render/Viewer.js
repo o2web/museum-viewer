@@ -1,5 +1,5 @@
 // libs
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // Required Components
@@ -9,7 +9,8 @@ import OpenSeaDragon from '../OpenSeaDragon';
 import { getYoutubeId } from '../../../helpers/youtube-helper';
 
 const propTypes = {
-  // data: PropTypes.object,
+  title: PropTypes.string.isRequired,
+  media: PropTypes.object.isRequired,
 };
 
 const defaultProps = {
@@ -20,45 +21,58 @@ const contextTypes = {
 };
 
 // Index Component
-function Viewer(props) {
-  const {
-    title,
-    media = {
-      mediaUrl: '',
-    },
-  } = props;
+class Viewer extends Component {
+  constructor() {
+    super();
+    this.state = {
+      canRenderOSD: false,
+    };
+  }
+  componentDidMount() {
+    this.setState({ canRenderOSD: true });
+  }
 
-  const videoOpts = {
-    height: '100%',
-    width: '100%',
-    playerVars: {
-      modestbranding: 1,
-      rel: 0,
-    },
-  };
+  render() {
+    const {
+      title,
+      media = {
+        mediaUrl: '',
+      },
+    } = this.props;
+    const { canRenderOSD } = this.state;
 
-  const player = {
-    image: (
-      <OpenSeaDragon media={media} />
-    ),
-    video: (
-      <div className="youtube-player">
-        <YouTube
-          containerClassName="youtube-player__iframe-wrapper"
-          videoId={media && media.mediaUrl && getYoutubeId(media.mediaUrl)}
-          opts={videoOpts}
+    const videoOpts = {
+      height: '100%',
+      width: '100%',
+      playerVars: {
+        modestbranding: 1,
+        rel: 0,
+      },
+    };
+
+    const player = {
+      image: (
+        canRenderOSD ? <OpenSeaDragon media={media} /> : <React.Fragment />
+      ),
+      video: (
+        <div className="youtube-player">
+          <YouTube
+            containerClassName="youtube-player__iframe-wrapper"
+            videoId={media && media.mediaUrl && getYoutubeId(media.mediaUrl)}
+            opts={videoOpts}
+          />
+        </div>
+      ),
+      audio: (
+        <Soundplayer
+          audioUrl={media ? media.mediaUrl : ''}
+          trackTitle={title}
         />
-      </div>
-    ),
-    audio: (
-      <Soundplayer
-        audioUrl={media ? media.mediaUrl : ''}
-        trackTitle={title}
-      />
-    ),
-  };
+      ),
+    };
 
-  return player[media.mediaType];
+    return player[media.mediaType];
+  }
 }
 
 Viewer.contextTypes = contextTypes;
