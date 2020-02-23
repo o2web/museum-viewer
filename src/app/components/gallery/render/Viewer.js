@@ -29,6 +29,10 @@ class Viewer extends Component {
     };
   }
   componentDidMount() {
+    this.updateRenderState();
+  }
+
+  updateRenderState() {
     this.setState({ canRenderOSD: true });
   }
 
