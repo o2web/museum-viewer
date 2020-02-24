@@ -1,17 +1,11 @@
 // libs
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import OpenSeadragon from 'openseadragon';
 
 // Styles
 import './render/styles.scss';
 
-// Conditionnal Import
-let OSD;
-if (typeof document !== 'undefined' && document) {
-  import('openseadragon').then((osd) => {
-    OSD = osd;
-  });
-}
 
 class OpenSeaDragon extends Component {
   constructor(props) {
@@ -20,13 +14,15 @@ class OpenSeaDragon extends Component {
   }
 
   componentDidMount() {
-    this.initOSD();
+    if (document) {
+      this.initOSD();
+    }
   }
 
   componentDidUpdate(prevProps) {
     const { media: prevMedia } = prevProps;
     const { media: currentMedia } = this.props;
-    if ((prevMedia !== currentMedia) && OSD) {
+    if ((prevMedia !== currentMedia) && document) {
       this.initOSD();
     }
   }
@@ -49,7 +45,7 @@ class OpenSeaDragon extends Component {
 
   initOSD() {
     const { media: { openseadragonConfig, mediaUrl } } = this.props;
-    if (!OSD || !mediaUrl) {
+    if (!mediaUrl) {
       return;
     }
     const mediaFiles = JSON.parse(mediaUrl);
@@ -80,7 +76,7 @@ class OpenSeaDragon extends Component {
     // destroy previous viewer
     this.destroyOSD();
     // Init with configs
-    this.viewer = OSD(config);
+    this.viewer = OpenSeadragon(config);
   }
 
 

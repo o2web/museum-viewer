@@ -19,18 +19,16 @@ import galleryActions from '../../actions/gallery/index';
 class Gallery extends Component {
   constructor(props) {
     super(props);
-    if (typeof document !== 'undefined' && document.createElement && document.head) {
-      const iconFontFamily = `
-        @font-face {
-          font-family: "gallery-icons";
-          src: url(${iconFontWOFF}) format('woff');
-        }
-      `;
-      const styleTag = document.createElement('style');
-      styleTag.setAttribute('type', 'text/css');
-      styleTag.appendChild(document.createTextNode(iconFontFamily));
-      document.head.appendChild(styleTag);
-    }
+    const iconFontFamily = `
+      @font-face {
+        font-family: "gallery-icons";
+        src: url(${iconFontWOFF}) format('woff');
+      }
+    `;
+    const styleTag = document.createElement('style');
+    styleTag.setAttribute('type', 'text/css');
+    styleTag.appendChild(document.createTextNode(iconFontFamily));
+    document.head.appendChild(styleTag);
 
     this.toggleInfo = this.toggleInfo.bind(this);
     this.closeMedia = this.closeMedia.bind(this);
@@ -145,7 +143,7 @@ class Gallery extends Component {
     const { prevMedia, nextMedia, closeMedia, toggleInfo } = this;
     return (
       <div className="gallery">
-        {active &&
+        {document && active &&
           <GalleryUi
             t={t}
             active={active}
