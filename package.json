@@ -73,7 +73,7 @@
     "file-loader": "^5.0.2",
     "iconfont-plugin-webpack": "^1.1.0",
     "node-fetch": "^2.3.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "rollup": "^1.31.0",
     "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-copy": "^3.3.0",
